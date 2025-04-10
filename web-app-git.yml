@@ -1,0 +1,16 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          client-id: ${STEAM_API_KEY}  # Vous pouvez utiliser votre clé API Steam ici
+          client-secret: ${STEAM_API_KEY:default_value_if_missing} # Récupéré de l'env
+          redirect-uri: "{baseUrl}/login/oauth2/code/steam"
+          scope:
+            - read_profile
+        provider:
+          steam:
+            authorization-uri: "https://steamcommunity.com/openid/login"
+            token-uri: "https://steamcommunity.com/openid/token"
+            user-info-uri: "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/"
+            user-name-attribute: "steamid"
